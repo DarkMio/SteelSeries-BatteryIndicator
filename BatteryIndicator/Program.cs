@@ -62,7 +62,7 @@ app.OnNewBatteryLevels += (_, values) =>
     tray.UpdateState(string.Join('\n', batteryStates), iconForLowest);
 
     var lowestDischarging = values.Where(x => !x.Charging).MinBy(x => x.Level);
-    if (lowestDischarging is { Level: < 1000 })
+    if (lowestDischarging is { Level: < 15 })
     {
         var toastText = $"Your {lowestLevel.Definition.Name} reached {lowestLevel.Level}%";
         toaster.Toast(toastText, SelectIcon(lowestDischarging.Level));
