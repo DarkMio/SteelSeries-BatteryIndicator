@@ -15,8 +15,8 @@ public class TrayIcon
 
     public delegate bool AutostartChangeEvent(TrayIcon ctx);
 
-    public event ClickEvent OnExitClicked;
-    public event AutostartChangeEvent OnChangeAutostartClicked;
+    public event ClickEvent? OnExitClicked;
+    public event AutostartChangeEvent? OnChangeAutostartClicked;
 
     public TrayIcon (bool isAutostarting)
     {

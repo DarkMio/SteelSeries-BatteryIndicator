@@ -9,13 +9,7 @@ public class App
 {
     public record MouseBatteryLevel(MouseDefinition Definition, DeviceInfo device, int Level, bool Charging);
     public delegate void BatteryEvent(App sender, List<MouseBatteryLevel> levels);
-    public event BatteryEvent OnNewBatteryLevels;
-    
-    public App() {}
-
-    
-    
-    
+    public event BatteryEvent? OnNewBatteryLevels;
     
     private async Task<(int level, bool charging)?> GetBatteryLevel(Device device, MouseDefinition definition)
     {
