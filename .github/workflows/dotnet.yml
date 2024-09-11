@@ -5,25 +5,31 @@ name: .NET
 
 on:
   push:
-    branches: [ "master" ]
+    tags:
+      - "v*.*.*"
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet publish -c Release -r win-x64 --self-contained /p:PublishTrimmed=true /p:PublishSingleFile=true
-    - name: Publish
-      if: startsWith(github.ref, 'refs/tags/')
-      uses: softprops/action-gh-release@v1
-      with:
-        files: "App*"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet publish -c Release -r win-x64 --self-contained /p:PublishTrimmed=true /p:PublishSingleFile=true --artifacts-path ${{github.workspace}}/out
+      - name: Package
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: thedoctor0/zip-release@0.7.5
+        with:
+          type: 'zip'
+          filename: win-x64.zip
+          directory: 'out/publish/BatteryIndicator/release_win-x64'
+      - name: Publish
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "out/publish/**/*.zip"
