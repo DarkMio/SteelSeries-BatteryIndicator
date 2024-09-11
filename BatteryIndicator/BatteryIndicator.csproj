@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <HResourcesGenerator_WithSystemDrawing>true</HResourcesGenerator_WithSystemDrawing>
+        <AssemblyName>SteelSeries Battery Indicator</AssemblyName>
+        <ApplicationIcon>Images\AppIcon.ico</ApplicationIcon>
+        <HResourcesGenerator_AddResourcesFolder>false</HResourcesGenerator_AddResourcesFolder>
+        <RootNamespace>BatteryIndicator</RootNamespace>
+    </PropertyGroup>
+    
+    <ItemGroup Label="Icons">
+        <EmbeddedResource Include="Images\*.ico" />
+        <AdditionalFiles Include="Images\*.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="H.NotifyIcon" Version="2.1.3" />
+      <PackageReference Include="H.Resources.Generator" Version="1.6.1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="HidApi.Net" Version="1.1.0" />
+      <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
+      <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <None Include="hidapi.dll">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>
