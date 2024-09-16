@@ -8,7 +8,6 @@ It will eventually send notifications that your battery is about to run out.
 
 ![Notification sent when battery is running out](_images/system_notification.png)
 
-
 ## Supported Mice
 
 - Aerox 3
@@ -21,3 +20,8 @@ It will eventually send notifications that your battery is about to run out.
 ## Special Thanks
 
 [rivalcfg](https://github.com/flozz/rivalcfg) for already figuring out all HID reports necessary
+
+## How do I install it?
+
+You can safely delete the `pdb` file.
+<video src="https://github.com/user-attachments/assets/795dd5fb-1703-4a22-b0e2-4db260578bd1" />  
