@@ -20,7 +20,7 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
-        run: dotnet publish -c Release -r win-x64 --self-contained /p:PublishTrimmed=true /p:PublishSingleFile=true --artifacts-path ${{github.workspace}}/out
+        run: dotnet publish -c Release -r win-x64 --self-contained /p:PublishTrimmed=true /p=PublishAot=true /p:StripSymbols=true --artifacts-path ${{github.workspace}}/out
       - name: Package
         if: startsWith(github.ref, 'refs/tags/')
         uses: thedoctor0/zip-release@0.7.5
